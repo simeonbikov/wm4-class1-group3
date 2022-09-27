@@ -1,13 +1,14 @@
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 html {
     font-size: 62.5%;
     font-family: 'Mulish', sans-serif;
+}
+body {
+  margin-left: 60px;
+  margin-right: 60px;
+background-image: linear-gradient(rgb(248, 254, 142), rgb(132, 226, 250));
 }
 
 li {
@@ -22,6 +23,7 @@ a {
     border-bottom: 5px solid #E2E8F0;
     height: 15rem;
 }
+
 
 .navbar {
     display: flex;
@@ -84,8 +86,40 @@ a {
     border-radius: 10% 10% 10% 0%;
 }
 
-.logo {
-    
+/*section 1*/
+.blue-cartoon {
+    width: 400px;
+    height: 400px;
+}
+.green-cartoon {
+    width: 200px;
+    height: 200px;
+}
+.pink-cartoon {
+    width: 400px;
+        height: 400px;
+}
+.row-1 {
+ display: flex;
+ align-items: flex-start;
+ justify-content: center;
+}
+.game-description{
+    background-color: #BB378C;
+    font-size: 2rem;
+    padding: 3rem;
+    width: 50%;
+    color:#ffffff;
+    border-radius: 2rem;
+}
+.game-featured {
+        background-color: #2F4798;
+        font-size: 2rem;
+        padding: 3rem;
+        width: 80%;
+        
+        color: #ffffff;
+        border-radius: 2rem;
 }
 
 /*main*/
@@ -104,11 +138,29 @@ main {
     padding-top: 100px;
     width: 100%;
  }
+ .game-video-frame {
+     width: 600px;
+     height: 400px;
+ }
+
+ /*section 1*/
+ .row-2 {
+    background-color: #BB378C;
+    font-size: 2rem;
+    padding: 3rem;
+    width: 90%;
+    height: 10rem;
+    color: #ffffff;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+ }
 
 /* Footer */
 .footer {
     padding:3em 2em;
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -183,9 +235,40 @@ main {
         -webkit-transform: translateY(-8px) rotate(-45deg);
         transform: translateY(-8px) rotate(-45deg);
     }
+
+   /*section*/
+    .row-1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blue-cartoon {
+        width: 250px;
+        height: 250px;
+    }
+
+    .green-cartoon {
+        width: 200px;
+        height: 200px;
+    }
+
+    .pink-cartoon {
+        width: 300px;
+        height: 300px;
+    }
+    .game-video {
+        padding-top: 100px;
+        width: 60%;
+    }
+    .game-video-frame {
+        width: 400px;
+        height: 300px;
+    }
+
     /* Footer */
     .footer {
         font-size: 1.3em;
+        position: relative;
     }
 
     .footer__links {
