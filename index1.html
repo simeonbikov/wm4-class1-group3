@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="letters.css">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
-</head>
-<body>
-
-    <script src = "letters.js"></script>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <!-- <canvas id="canvas" width="1000" height="1000">
+        <button>kakkfdffdsfdsfds</button>
+      </canvas> -->
+      <form
+        id="myBox"
+        style="
+          border: 2px solid red;
+          width: 1000px;
+          height: 1000px;
+          position: relative;
+        "
+      ></form>
+      <div>
+        <button id="startGame" onclick="startGame()">Start Game</button
+        ><label> Enter a Word: </label
+        ><input id="enteredName" style="width: 200px" />
+        <label>Correct Clicked: <span id="correctspan">0</span></label> and
+        <label
+          >Incorrect Clicked:
+          <span id="incorrectspan" style="color: red">0</span></label
+        >
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>

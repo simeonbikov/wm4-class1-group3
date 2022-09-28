@@ -1,38 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- <canvas id="canvas" width="1000" height="1000">
-        <button>kakkfdffdsfdsfds</button>
-      </canvas> -->
-      <form
-        id="myBox"
-        style="
-          border: 2px solid red;
-          width: 1000px;
-          height: 1000px;
-          position: relative;
-        "
-      ></form>
-      <div>
-        <button id="startGame" onclick="startGame()">Start Game</button
-        ><label> Enter a Word: </label
-        ><input id="enteredName" style="width: 200px" />
-        <label>Correct Clicked: <span id="correctspan">0</span></label> and
-        <label
-          >Incorrect Clicked:
-          <span id="incorrectspan" style="color: red">0</span></label
-        >
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+<html lang="en"> 
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_layout.css">
+    <title>Go Game</title>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/ce0969a756.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
+    <!-- Font Mulish -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,800;0,900;1,600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <img class="logo" scr="images/1x/icon.png">
+           <img src="images/1x/logo.png">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-link-home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-link-games">Games</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-link-about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-link-contact">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+
+        <section class="game-title">
+            <h1>Alphabet Games</h1>
+        </section>
+        <section class="row-1">
+           <div >
+            <img class="blue-cartoon" src="images/1x/blue_cartoon.png">
+            <div class="game-featured">
+                <p>Featured</br>
+                Games</br>
+                and</br>
+                Whiteboard</br>
+                Resources
+                </p>
+            </div>
+           </div>
+            <div class="game-video">
+                <iframe class="game-video-frame" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                    </iframe>
+            </div>
+            <div>
+                <img class="green-cartoon" src="images/1x/green_cartoon.png">
+                <div class="game-description">
+                    <p>You can see the word
+                    and try to pop the
+                    bubbles with correct
+                    letters and collect all
+                    the letters from the
+                    word.
+                    </p>
+                </div>
+                <img class="pink-cartoon" src="images/1x/pink_cartoon.png">
+            </div>
+        </section>
+        <section class="row-2">
+            <div>
+                <p>You can see the word
+                and try to pop the
+                bubbles with correct
+                letters and collect all
+                the letters from the
+                word.</p>
+            </div>
+        </section>
+      
+    </main>
+    <footer class="footer">
+        <div class="footer__links">
+            <a href="#"><i class="fa-brands fa-facebook"></i>Facebook</a>
+            <a href="#"><i class="fa-brands fa-instagram"></i>Instagram</a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i>Pinterest</a>
+        </div>
+    </footer>
+    
+</body>
+
+<script src="main_layout.js"></script>
+<script src = "letters.js"></script>
+
 </html>
