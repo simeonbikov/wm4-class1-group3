@@ -8,6 +8,10 @@ body {
   background-image: linear-gradient(rgb(248, 254, 142), rgb(132, 226, 250));
 }
 
+ul {
+  padding-top: 20px;
+}
+
 li {
   list-style: none;
 }
@@ -22,9 +26,7 @@ a {
 }
 
 .logo {
-  margin-top: -40px;
-  margin-left: -90px;
-  width: 700px;
+  width: 500px;
 }
 /* .logo:hover {
 opacity: 1.0;
@@ -35,8 +37,8 @@ opacity: 1.0;
   justify-content: space-between;
   /* padding: 3.5rem; */
   color: darkblue;
-  padding: 14px 16px;
-   font-size: 3rem;
+  /*padding: 14px 16px;*/
+  font-size: 3rem;
 }
 
 .hamburger {
@@ -63,10 +65,12 @@ opacity: 1.0;
 
 .nav-link {
   text-decoration: none;
+
   /* margin-right: 10px; */
   padding: 15px 25px;
   background-color: rgb(52, 143, 233);
   color: aliceblue;
+
   /* border-radius: 7px; */
   -webkit-border-top-right-radius: 30px;
   -webkit-border-top-left-radius: 30px;
@@ -88,8 +92,8 @@ opacity: 1.0;
   -ms-transition: background-color 200mx ease-in;
   -o-transition: background-color 200ms ease-in;
   transition: background-color 200ms ease-in;
-  box-shadow: 5px 10px 18px red inset;
-  padding: 25px 35px 20px 35px;
+  box-shadow: 5px 10px 18px #2f4798 inset;
+  
 }
 
 /* .nav-link-home {
@@ -116,13 +120,19 @@ opacity: 1.0;
 
 /*section 1*/
 .blue-cartoon {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
 }
 .green-cartoon {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
 }
+
+.green-cartoon-column {
+ margin-top: -10rem;
+ margin-left: 5rem;
+}
+
 .pink-cartoon {
   width: 400px;
   height: 400px;
@@ -135,6 +145,7 @@ opacity: 1.0;
 .game-description {
   background-color: #bb378c;
   font-size: 2rem;
+  margin-top: -5rem;
   padding: 3rem;
   width: 50%;
   color: #ffffff;
@@ -143,8 +154,8 @@ opacity: 1.0;
 .game-featured {
   background-color: #2f4798;
   font-size: 2rem;
-  padding: 3rem;
-  width: 80%;
+  padding: 4rem;
+  width: 70%;
 
   color: #ffffff;
   border-radius: 2rem;
@@ -163,8 +174,8 @@ main {
   font-weight: 800;
 }
 .game-video {
-  padding-top: 100px;
   width: 100%;
+  margin-left: 3rem;
 }
 .game-video-frame {
   width: 600px;
@@ -176,8 +187,6 @@ main {
   background-color: #bb378c;
   font-size: 2rem;
   padding: 3rem;
-  width: 90%;
-  height: 10rem;
   color: #ffffff;
   border-radius: 2rem;
   display: flex;
@@ -224,10 +233,10 @@ main {
 @media only screen and (max-width: 540px) {
   .nav-menu {
     position: fixed;
-    left: -100%;
+    left: -200%;
     top: 5rem;
     flex-direction: column;
-    background-color: #fff;
+    background-image: linear-gradient(rgb(248, 254, 142), rgb(132, 226, 250));
     width: 100%;
     border-radius: 10px;
     text-align: center;
@@ -246,6 +255,8 @@ main {
   .hamburger {
     display: block;
     cursor: pointer;
+    margin-top: 2rem;
+    margin-right: 2rem;
   }
 
   .hamburger.active .bar:nth-child(2) {
@@ -261,6 +272,10 @@ main {
     -webkit-transform: translateY(-8px) rotate(-45deg);
     transform: translateY(-8px) rotate(-45deg);
   }
+    /*logo*/
+    .logo {
+      width: 250px;
+    }
 
   /*section*/
   .row-1 {
@@ -276,20 +291,35 @@ main {
   .green-cartoon {
     width: 200px;
     height: 200px;
+    margin-top: 0;
+  }
+
+  .green-cartoon-column {
+    margin-top: 0;
   }
 
   .pink-cartoon {
-    width: 300px;
+    width: 300px; 
     height: 300px;
   }
-  .game-video {
-    padding-top: 100px;
-    width: 60%;
+
+  .game-title {
+    white-space: nowrap;
   }
+
+  .game-description {
+    margin-top: 0;
+  }
+
+  .game-video {
+    display: none;
+  }
+
   .game-video-frame {
     width: 400px;
     height: 300px;
   }
+    
 
   /* Footer */
   .footer {
