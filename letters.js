@@ -2,7 +2,7 @@ const canvas = document.createElement("canvas");
 canvas.setAttribute("height", "480");
 canvas.setAttribute("width", "640");
 canvas.style.position = "absolute";
-canvas.style.top = window.innerHeight / 2 - canvas.height / 2 + "px";
+canvas.style.top = "300px";
 canvas.style.left = window.innerWidth / 2 - canvas.width / 2 + "px";
 canvas.style.border = "1px solid #000";
 canvas.style.backgroundColor = "#ffd500";
