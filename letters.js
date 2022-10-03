@@ -1,24 +1,17 @@
-// const canvas = document.getElementById("gameCanvas");
-
-const gameCanvas = document.getElementById("game-canvas");
 const canvas = document.createElement("canvas");
 canvas.setAttribute("height", "480");
 canvas.setAttribute("width", "640");
-//canvas.style.position = "absolute";
-canvas.style.top = "300px";
-// canvas.style.top = window.innerHeight / 2 - canvas.height / 2 + "px";
+canvas.style.position = "absolute";
+canvas.style.top = window.innerHeight / 2 - canvas.height / 2 + "px";
 canvas.style.left = window.innerWidth / 2 - canvas.width / 2 + "px";
 canvas.style.border = "1px solid #000";
 canvas.style.backgroundColor = "#ffd500";
-// canvas.style.backgroundColor = "#ffd500";
-
-//document.body.prepend(canvas);
-gameCanvas.prepend(canvas);
-
-
+document.body.prepend(canvas);
 const ctx = canvas.getContext("2d");
 
 const lettersMade = [];
+let lettersCounter = 7;
+const amountOfDisplayedLetters = 15;
 const clickTracker = [];
 const words = ["APPLE", "TOY", "BALL", "BIKE", "RAINBOW"];
 let word = "";
@@ -45,7 +38,9 @@ function collisionCheck(lett, dot) {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  letterMaker();
+  if (lettersMade.length < lettersCounter) {
+    letterMaker();
+  }
 
   clickTracker.forEach((dot, index) => {
     ctx.fillStyle = "white";
@@ -62,13 +57,21 @@ function draw() {
   lettersMade.forEach((lett, index) => {
     lett.y += lett.speed;
     lett.x -= Math.random() * 2 - 1; // moving left/right
-    if (lett.y < -0.5) {
-      lettersMade.splice(index, 1);
+    if (lett.y > canvas.height + lett.size) {
+      let temp1 = lettersMade.splice(index, 1);
+      if (lettersCounter < amountOfDisplayedLetters) {
+        lettersCounter++;
+      }
+      // console.log(lettersMade.length);
     }
     clickTracker.forEach((dot) => {
       if (collisionCheck(lett, dot)) {
-        lettersMade.splice(index, 1);
-        // console.log(lett);
+        let temp2 = lettersMade.splice(index, 1);
+        if (lettersCounter < amountOfDisplayedLetters) {
+          lettersCounter++;
+        }
+        // console.log(lettersMade.length);
+
         if (word.includes(lett.letter)) {
           word = word.replace(lett.letter, "");
           game.score--;
@@ -127,8 +130,6 @@ function drawLetter(xPosition, yPosition, letterSize, randomLetter, randomColor)
 // game.requestAnim = requestAnimationFrame(draw);
 
 function startGame() {
-  // canvas.getAttribute("hidden");
-  // canvas.removeAttribute("hidden");
   ctx.fillStyle = "rgba(0, 0, 0, 1)";
   ctx.fillRect(canvas.width/2 -120, canvas.height/2 -40, 240, 40);
   ctx.beginPath();
@@ -139,10 +140,10 @@ function startGame() {
   ctx.fillText(startTxt, canvas.width/2, canvas.height/2 -12, 400);
 
   canvas.addEventListener("click", oneClick);
-  function oneClick(e) {
+  function oneClick() {
     this.removeEventListener("click", oneClick);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    game.requestAnim = requestAnimationFrame(startIntro);
+    startIntro();
   }
 }
 
@@ -158,24 +159,11 @@ function startIntro() {
   ctx.fillText(introTxt, canvas.width / 2, canvas.height / 2 - 12, 400);
 
   canvas.addEventListener("click", oneClick);
-  // timer();
-  function oneClick(e) {
+  function oneClick() {
     this.removeEventListener("click", oneClick);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game.requestAnim = requestAnimationFrame(draw);
-  };
+  }
 }
-
-  // function timer() {
-  //   let seconds = 10;
-  //   let id = window.setInterval(function() {
-  //     seconds--;
-  //     if (seconds < 0) {
-  //       clearInterval(id);
-  //       game.requestAnim = requestAnimationFrame(draw);
-  //       return;
-  //     }
-  //   }, 1000 / 60);
-  // };
 
 startGame();
