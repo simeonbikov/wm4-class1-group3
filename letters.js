@@ -1,17 +1,18 @@
+// const canvas = document.getElementById("gameCanvas");
 const canvas = document.createElement("canvas");
 canvas.setAttribute("height", "480");
 canvas.setAttribute("width", "640");
 canvas.style.position = "absolute";
 canvas.style.top = "300px";
+// canvas.style.top = window.innerHeight / 2 - canvas.height / 2 + "px";
 canvas.style.left = window.innerWidth / 2 - canvas.width / 2 + "px";
 canvas.style.border = "1px solid #000";
 canvas.style.backgroundColor = "#ffd500";
+// canvas.style.backgroundColor = "#ffd500";
 document.body.prepend(canvas);
 const ctx = canvas.getContext("2d");
 
 const lettersMade = [];
-let lettersCounter = 7;
-const amountOfDisplayedLetters = 15;
 const clickTracker = [];
 const words = ["APPLE", "TOY", "BALL", "BIKE", "RAINBOW"];
 let word = "";
@@ -36,12 +37,12 @@ function collisionCheck(lett, dot) {
   return isHit;
 }
 
+var startingTime = Date.now();
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (lettersMade.length < lettersCounter) {
-    letterMaker();
-  }
-
+  letterMaker();
+  drawCountDownTime(word.length * 10);
   clickTracker.forEach((dot, index) => {
     ctx.fillStyle = "white";
     ctx.strokeStyle = "red";
@@ -57,21 +58,13 @@ function draw() {
   lettersMade.forEach((lett, index) => {
     lett.y += lett.speed;
     lett.x -= Math.random() * 2 - 1; // moving left/right
-    if (lett.y > canvas.height + lett.size) {
-      let temp1 = lettersMade.splice(index, 1);
-      if (lettersCounter < amountOfDisplayedLetters) {
-        lettersCounter++;
-      }
-      // console.log(lettersMade.length);
+    if (lett.y < -0.5) {
+      lettersMade.splice(index, 1);
     }
     clickTracker.forEach((dot) => {
       if (collisionCheck(lett, dot)) {
-        let temp2 = lettersMade.splice(index, 1);
-        if (lettersCounter < amountOfDisplayedLetters) {
-          lettersCounter++;
-        }
-        // console.log(lettersMade.length);
-
+        lettersMade.splice(index, 1);
+        // console.log(lett);
         if (word.includes(lett.letter)) {
           word = word.replace(lett.letter, "");
           game.score--;
@@ -86,6 +79,13 @@ function draw() {
     drawLetter(lett.x, lett.y, lett.size, lett.letter, lett.color);
   });
   //score area:
+  if ((Date.now() - startingTime) / 1000 > word.length * 10) {
+    drawCountDownTime(word.length * 10);
+    alert("Sorry, you are running out of time!");
+    document.location.reload();
+    clearInterval(interval);
+  }
+
   game.score = word.length;
   ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
   ctx.fillRect(canvas.width / 2 - 120, 13, 240, 40);
@@ -121,7 +121,13 @@ function letterMaker() {
   });
 }
 
-function drawLetter(xPosition, yPosition, letterSize, randomLetter, randomColor) {
+function drawLetter(
+  xPosition,
+  yPosition,
+  letterSize,
+  randomLetter,
+  randomColor
+) {
   ctx.font = "bold " + letterSize + "px serif";
   ctx.fillStyle = randomColor;
   ctx.fillText(randomLetter, xPosition, yPosition);
@@ -130,20 +136,22 @@ function drawLetter(xPosition, yPosition, letterSize, randomLetter, randomColor)
 // game.requestAnim = requestAnimationFrame(draw);
 
 function startGame() {
+  // canvas.getAttribute("hidden");
+  // canvas.removeAttribute("hidden");
   ctx.fillStyle = "rgba(0, 0, 0, 1)";
-  ctx.fillRect(canvas.width/2 -120, canvas.height/2 -40, 240, 40);
+  ctx.fillRect(canvas.width / 2 - 120, canvas.height / 2 - 40, 240, 40);
   ctx.beginPath();
   ctx.fillStyle = "#ffd500";
   ctx.font = "24px serif";
   ctx.textAlign = "center";
   let startTxt = "START";
-  ctx.fillText(startTxt, canvas.width/2, canvas.height/2 -12, 400);
+  ctx.fillText(startTxt, canvas.width / 2, canvas.height / 2 - 12, 400);
 
   canvas.addEventListener("click", oneClick);
-  function oneClick() {
+  function oneClick(e) {
     this.removeEventListener("click", oneClick);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    startIntro();
+    game.requestAnim = requestAnimationFrame(startIntro);
   }
 }
 
@@ -159,11 +167,41 @@ function startIntro() {
   ctx.fillText(introTxt, canvas.width / 2, canvas.height / 2 - 12, 400);
 
   canvas.addEventListener("click", oneClick);
-  function oneClick() {
+  // timer();
+  function oneClick(e) {
     this.removeEventListener("click", oneClick);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game.requestAnim = requestAnimationFrame(draw);
   }
 }
 
+// function timer() {
+//   let seconds = 10;
+//   let id = window.setInterval(function() {
+//     seconds--;
+//     if (seconds < 0) {
+//       clearInterval(id);
+//       game.requestAnim = requestAnimationFrame(draw);
+//       return;
+//     }
+//   }, 1000 / 60);
+// };
+
 startGame();
+// myVar = setTimeout(startGame(), 2000);
+// // clearTimeout(myVar);
+
+function drawCountDownTime(GameTime) {
+  var countDownTime = GameTime - Math.floor((new Date() - startingTime) / 1000);
+  ctx.save();
+  ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+  ctx.fillRect(13, 13, 80, 40);
+  ctx.beginPath();
+  ctx.fillStyle = "#ffd500";
+  ctx.font = "30px Verdana";
+  // draw the running time at half opacity
+  ctx.globalAlpha = 0.5;
+  // ctx.fillText(elapsed + "s ecs", canvas.width - 75, 25);
+  ctx.fillText(countDownTime, 50, 45, 400);
+  ctx.restore();
+}
