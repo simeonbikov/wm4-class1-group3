@@ -38,11 +38,13 @@ function collisionCheck(lett, dot) {
 }
 
 var startingTime = Date.now();
+var lengthWord;
+var timeForEachLetter = 10;
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   letterMaker();
-  drawCountDownTime(word.length * 10);
+  drawCountDownTime(lengthWord * timeForEachLetter);
   clickTracker.forEach((dot, index) => {
     ctx.fillStyle = "white";
     ctx.strokeStyle = "red";
@@ -79,8 +81,8 @@ function draw() {
     drawLetter(lett.x, lett.y, lett.size, lett.letter, lett.color);
   });
   //score area:
-  if ((Date.now() - startingTime) / 1000 > word.length * 10) {
-    drawCountDownTime(word.length * 10);
+  if ((Date.now() - startingTime) / 1000 >= lengthWord * timeForEachLetter) {
+    drawCountDownTime(lengthWord * timeForEachLetter);
     alert("Sorry, you are running out of time!");
     document.location.reload();
     clearInterval(interval);
@@ -157,6 +159,7 @@ function startGame() {
 
 function startIntro() {
   word = words[Math.floor(Math.random() * words.length)];
+  lengthWord = word.length;
   ctx.fillStyle = "rgba(0, 0, 0, 1)";
   ctx.fillRect(0, canvas.height / 2 - 40, canvas.width, 40);
   ctx.beginPath();
@@ -192,7 +195,7 @@ startGame();
 // // clearTimeout(myVar);
 
 function drawCountDownTime(GameTime) {
-  var countDownTime = GameTime - Math.floor((new Date() - startingTime) / 1000);
+  var countDownTime = GameTime - Math.floor((Date.now() - startingTime) / 1000);
   ctx.save();
   ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
   ctx.fillRect(13, 13, 80, 40);
